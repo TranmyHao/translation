@@ -3,7 +3,7 @@
 ---
 >安装
 
-LightInject 通过NuGet提供两种发布版本。
+LightInject 通过NuGet提供两种发布版本。
 
 二进制
 ``` bash
@@ -59,14 +59,16 @@ LightInject中的容器(Container)实现了IDisposable接口，使用完毕后�
 ```
 如果只注册了一个命名服务，LightInject能够将该命名服务当做默认服务解析。
 ```csharp
-container.Register<IFoo, AnotherFoo>("AnotherFoo");
-var instance = container.GetInstance<IFoo>();
-Assert.IsInstanceOfType(instance, typeof(AnotherFoo));
+    container.Register<IFoo, AnotherFoo>("AnotherFoo");
+
+    var instance = container.GetInstance<IFoo>();
+
+    Assert.IsInstanceOfType(instance, typeof(AnotherFoo));
 ```
 ---
 > 未解析的的服务
 
-通过调用```RegisterFallback```方法，LightInject能够解析未曾注册过的服务。
+通过调用```RegisterFallback```方法，LightInject能够解析未曾注册过的服务。
 ```csharp
     var container = new ServiceContainer();
     container.RegisterFallback((type, s) => true, request => new Foo());
