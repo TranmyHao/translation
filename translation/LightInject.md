@@ -1,4 +1,4 @@
-## LightInject 官网文档-中文译文
+## LightInject [官网文档](https://www.lightinject.net/)-中文译文
 #### _<center>By 谭明豪</center>_
 ---
 >安装
@@ -631,10 +631,11 @@ LightInject能够在给定程序集中查找类型来注册服务。
 当扫描程序集的时候，LightInject会使用实现类型的名字作为默认的服务名称。改该行为可以通过指定一个基于服务类型和实现类型提供名字的函数委托来改变。
 
 ``` csharp
-    container.RegisterAssembly(typeof(IFoo).Assembly, 
-    () => new PerContainerLifetime(), 
-    (serviceType, implementingType) => serviceType.NameSpace == "SomeNamespace",
-    (serviceType, implementingType) => "Provide custom service name here");
+    container.RegisterAssembly(
+        typeof(IFoo).Assembly, 
+        () => new PerContainerLifetime(), 
+        (serviceType, implementingType) => serviceType.NameSpace == "SomeNamespace",
+        (serviceType, implementingType) => "Provide custom service name here");
 ```
 
 也可以实现```IServiceNameProvider```接口来全局的改变所有注册服务的命名。
@@ -717,7 +718,7 @@ LightInject 实施通用约束。（然后没有更多描述了。。。）
 
 ---
 
-> Lazy<T>
+> ```Lazy<T>```
 
 LightInject可以将服务解析为```Lazy<T>```的一个实例。这样当我们想要延迟解析服务直到真的需要的时候。
 ``` csharp
