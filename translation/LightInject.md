@@ -628,7 +628,7 @@ LightInject能够在给定程序集中查找类型来注册服务。
 ``` csharp
     container.RegisterAssembly("SomeAssemblyName*.dll");  
 ```
-当扫描程序集的时候，LightInject会使用实现类型的名字作为默认的服务名称。改该行为可以通过指定一个基于服务类型和实现类型提供名字的函数委托来改变。
+当扫描程序集的时候，LightInject会使用实现类型的名字作为默认的服务名称。改该行为可以通过指定一个基于服务类型和实现类型提供名字的函数委托来改变。
 
 ``` csharp
     container.RegisterAssembly(typeof(IFoo).Assembly, 
@@ -656,7 +656,7 @@ LightInject能够在给定程序集中查找类型来注册服务。
 ---
 
 > 聚合根（Composition Root）
-
+
 当LightInject扫描程序集的时候，它会寻找一个```ICompositionRoot```接口的实现.
 ``` csharp
     public class SampleCompositionRoot : ICompositionRoot
@@ -669,7 +669,7 @@ LightInject能够在给定程序集中查找类型来注册服务。
 ```
 如果找到一个或多个该接口的实现，这些实现都会被执行。
 
-_注意：任何包含在目标程序集中但是没有在聚合根中注册的其它服务，都不会被注册_
+_注意：任何包含在目标程序集中但是没有在聚合根中注册的其它服务，都不会被注册_
 
 程序一般不会只有一个聚合根，因为这意味着需要引用所有其它程序集。拥有多个聚合根可以让服务以组的方式更自然的组合在一起。另一个在聚合根中注册服务的好处是：注册的代码能更容易的在自动化测试中重用。
 
@@ -704,7 +704,7 @@ LightInject具备按需注册服务的能力。对于一个含有超多服务的
     public interface IFoo<T> {};
     public class Foo<T> : IFoo<T> {};
 ```
-容器会基于服务请求生成闭合的泛型类型(closed generic type)。
+容器会基于服务请求生成闭合的泛型类型(closed generic type)。
 ``` csharp
     container.Register(typeof(IFoo<>), typeof(Foo<>));
     var instance = container.GetInstance(typeof(IFoo<int>));
@@ -719,7 +719,7 @@ LightInject 实施通用约束。（然后没有更多描述了。。。）
 
 > Lazy<T>
 
-LightInject可以将服务解析为```Lazy<T>```的一个实例。这样当我们想要延迟解析服务直到真的需要的时候。
+LightInject可以将服务解析为```Lazy<T>```的一个实例。这样当我们想要延迟解析服务直到真的需要的时候。
 ``` csharp
     public interface IFoo {}
     public class Foo : IFoo {}
